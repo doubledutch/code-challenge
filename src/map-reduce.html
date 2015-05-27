@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Map Reduce Challenge</title>
+  <style>
+    body{margin:25px;padding:0px;background:#ffffff;}
+    .content{
+      width:860px;height:306px;
+      background:#BBBAB9;
+      border:3px solid #8B8A89;
+      border-radius:5px;
+      padding:0px;
+    }
+    .data{
+      background: #F5F5F5;
+      font-family:courier;
+      font-size:11px;
+      border-left:3px solid #888888;
+    }
+    .error{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:11px;
+      display:none;
+      padding:3px;
+      color:#FFFFFF;
+      background: #DD0000;
+    }
+    .datalabel{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:11px;
+      display:inline-block;
+      padding:3px;
+      color:#FFFFFF;
+      background: #555555;
+    }
+    .functionlabel{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:11px;
+      display:inline-block;
+      padding:3px;
+      color:#FFFFFF;
+      background: #335577;
+      margin-top:25px;
+    }
+    table{
+      margin:0px;
+      padding:0px;
+    }
+    td{
+      font-family:courier;
+      font-size:11px;
+    }
+    .shade{color:#888888;}
+    h1{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:18px;
+    }
+    h2{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:15px;
+    }
+    p{
+      font-family:Helvetica Neue, Helvetica;
+      font-size:12px;
+    }
+    textarea{
+      font-family:courier;
+      font-size:11px;
+      padding:3px;
+      background:#EEEEEE;
+      border-left:3px solid #6688AA;
+      border-top:none;border-right:none;border-bottom:none;
+      width:400px;
+      height:100px;
+    }
+    textarea:focus, input:focus{
+      outline: 0;
+    }
+  </style>
+</head>
+<body>
+<h1>Map <span style="color:#AAAAAA">&rarr;</span> Reduce <span style="color:#AAAAAA">&rarr;</span> View</h1>
+<table><tr><td valign="top" style="width:50%">
+<h2>Problem Set</h2>
+<p>
+  The following data set has several doubledutch email addresses hidden in it - each of the format &lt;number&gt;_&lt;word&gt;@doubledutch.me... use the map reduce framework below to analyze the data and uncover the email addresses! Click <a href="#" onClick="resetFunctions();return false">here to reset</a> the functions back to their initial state.
+</p>
+<p>
+Be careful to not create infinite loops as it will surely make your browser unhappy! ;-)
+</p>
+</td>
+<td valign="top">
+<h2>Data Definition</h2>
+<p>
+  Each element in the data set has 4 values: i,c,v and t.
+</p>
+<table style="background:#EEEEEE;border-radius:5px;border:1px solid #AAAAAA"><tr>
+  <td><b>i</b><span class="shade">ndex</span></td>
+  <td><b>c</b><span class="shade">haracter</span></td>
+  <td><b>v</b><span class="shade">alue</span></td>
+  <td><b>t</b><span class="shade">arget</span></td>
+</td></tr></table>
+<p>
+The character is what you will use for the output to form email address (notice how it's used in the default hello world sample). The value is simply a numeric value - perform some analysis on it to deduce a pattern that will reveal email addresses. The target and the index values are linked, in that target values point to index numbers - use these to form a graph of the data.
+</p>
+</td></tr></table>
+<div><span class="datalabel">input:</span></div>
+<div class="data" id="inputData">
+  so much input
+  </div>
+<div><span class="functionlabel">map</span><span class="error" id="maperror">So much error</span></div>
+<textarea id="f1" onchange="executeFunctions()" onkeyup="executeFunctions()"></textarea>
+<div><span class="datalabel">output from map:</span></div>
+<div class="data" id="mappedData">
+  so much mapped data
+  </div>
+  <div><span class="functionlabel">reduce</span><span class="error" id="reduceerror">So much error</span></div>
+<textarea id="f2" onchange="executeFunctions()" onkeyup="executeFunctions()"></textarea>
+<div><span class="datalabel">output from reduce:</span></div>
+<div class="data" id="reducedData">
+  so much reduced data
+  </div>
+  <div><span class="functionlabel">view</span><span class="error" id="viewerror">So much error</span></div>
+<textarea id="f3" onchange="executeFunctions()" onkeyup="executeFunctions()"></textarea>
+<div><span class="datalabel">output from view:</span></div>
+  <div class="data" id="output">
+  so much output
+  </div>
+  <script>
+
+var inputData=[{"i":71,"c":"m","v":203,"t":108},{"i":46,"c":"@","v":53},{"i":91,"c":"h","v":103},{"i":106,"c":"c","v":70},{"i":123,"c":"b","v":58},{"i":47,"c":"m","v":109},{"i":81,"c":"d","v":64},{"i":42,"c":"_","v":41},{"i":10,"c":"d","v":93},{"i":65,"c":"@","v":50},{"i":60,"c":"o","v":65,"t":53},{"i":83,"c":"e","v":113},{"i":52,"c":"@","v":169,"t":77},{"i":30,"c":".","v":74},{"i":19,"c":"c","v":203},{"i":49,"c":"u","v":77,"t":122},{"i":2,"c":"l","v":203},{"i":50,"c":"d","v":52},{"i":66,"c":"o","v":54},{"i":116,"c":"0","v":32},{"i":100,"c":".","v":185,"t":44},{"i":101,"c":"c","v":171,"t":51},{"i":53,"c":"o","v":125,"t":78},{"i":80,"c":"m","v":129,"t":112},{"i":114,"c":"e","v":37},{"i":70,"c":"f","v":143},{"i":55,"c":"e","v":36},{"i":108,"c":"e","v":39,"t":13},{"i":87,"c":"d","v":57,"t":45},{"i":20,"c":"e","v":78},{"i":93,"c":"y","v":65,"t":99},{"i":125,"c":"m","v":76},{"i":35,"c":"9","v":13},{"i":98,"c":"i","v":29},{"i":22,"c":"u","v":135,"t":115},{"i":16,"c":".","v":159,"t":71},{"i":1,"c":"e","v":143},{"i":43,"c":"m","v":159,"t":26},{"i":110,"c":"_","v":99,"t":118},{"i":107,"c":"u","v":67},{"i":23,"c":"r","v":48},{"i":18,"c":"t","v":97},{"i":126,"c":"_","v":95,"t":80},{"i":124,"c":"e","v":187,"t":75},{"i":39,"c":"n","v":42},{"i":12,"c":"-","v":201},{"i":121,"c":"_","v":44},{"i":38,"c":"l","v":73},{"i":74,"c":"a","v":111},{"i":112,"c":"r","v":195,"t":52},{"i":44,"c":"m","v":51,"t":119},{"i":3,"c":"l","v":165},{"i":90,"c":"v","v":38},{"i":8,"c":"r","v":159},{"i":109,"c":"l","v":129,"t":58},{"i":26,"c":"r","v":87,"t":104},{"i":99,"c":"c","v":35,"t":14},{"i":86,"c":"_","v":63,"t":79},{"i":122,"c":"b","v":145,"t":109},{"i":24,"c":"_","v":187,"t":43},{"i":96,"c":"e","v":79},{"i":36,"c":"l","v":135,"t":124},{"i":28,"c":"u","v":66},{"i":62,"c":"t","v":68},{"i":63,"c":"d","v":45,"t":22},{"i":25,"c":"e","v":87},{"i":84,"c":"e","v":40},{"i":14,"c":"l","v":187,"t":59},{"i":67,"c":"8","v":161,"t":86},{"i":79,"c":"r","v":105,"t":60},{"i":21,"c":"h","v":72},{"i":82,"c":"t","v":51,"t":101},{"i":117,"c":"-","v":51},{"i":13,"c":"6","v":195,"t":31},{"i":111,"c":"m","v":43},{"i":119,"c":"e","v":85,"t":119},{"i":9,"c":"l","v":123},{"i":72,"c":"o","v":61},{"i":15,"c":"d","v":83},{"i":41,"c":"b","v":155,"t":36},{"i":31,"c":"4","v":49,"t":110},{"i":57,"c":"d","v":59},{"i":45,"c":"o","v":21,"t":88},{"i":88,"c":"u","v":39,"t":41},{"i":77,"c":"d","v":49,"t":48},{"i":75,"c":"d","v":51,"t":68},{"i":97,"c":"b","v":105},{"i":68,"c":"u","v":9,"t":82},{"i":11,"c":"!","v":201},{"i":76,"c":"7","v":11},{"i":115,"c":"t","v":77,"t":85},{"i":59,"c":"e","v":69,"t":24},{"i":73,"c":"m","v":31},{"i":37,"c":".","v":107},{"i":4,"c":"o","v":129},{"i":48,"c":"o","v":39,"t":49},{"i":34,"c":"h","v":81},{"i":7,"c":"o","v":129},{"i":120,"c":"h","v":45,"t":100},{"i":33,"c":"l","v":60},{"i":103,"c":"g","v":45},{"i":94,"c":"r","v":23},{"i":69,"c":"d","v":49},{"i":40,"c":"2","v":147,"t":67},{"i":6,"c":"W","v":33},{"i":29,"c":"p","v":19},{"i":89,"c":"b","v":71},{"i":102,"c":"u","v":89},{"i":5,"c":" ","v":159},{"i":56,"c":"2","v":30},{"i":85,"c":"c","v":129,"t":120},{"i":17,"c":"m","v":46},{"i":32,"c":"u","v":56},{"i":64,"c":"_","v":34},{"i":51,"c":"h","v":189,"t":16},{"i":78,"c":"t","v":39,"t":126},{"i":118,"c":"c","v":153,"t":93},{"i":127,"c":"i","v":105},{"i":92,"c":"e","v":62},{"i":0,"c":"H","v":207},{"i":104,"c":"@","v":9,"t":87},{"i":105,"c":"_","v":17},{"i":54,"c":"r","v":47},{"i":27,"c":"c","v":101},{"i":58,"c":"e","v":189,"t":63}];
+  
+  var outputData={}
+
+  function resetFunctions(){
+    var elm=document.getElementById("f1")
+    elm.value="function map(obj){\n  return {i:obj.i,c:obj.c}\n}"
+    elm=document.getElementById("f2")
+    elm.value="function reduce(obj,acc){\n  acc=acc||[]\n  acc.push(obj)\n  return acc\n}"
+    elm=document.getElementById("f3")
+    elm.value="function view(acc){\n  acc.sort(function(a,b){return a.i-b.i})\n  var str=''\n  for(var i=0;i<acc.length;i++){\n    str+=acc[i].c\n  }\n  return str\n}"
+    var f1=document.getElementById("f1").value
+    var f2=document.getElementById("f2").value
+    var f3=document.getElementById("f3").value
+    localStorage.setItem("f1",f1)
+    localStorage.setItem("f2",f2)
+    localStorage.setItem("f3",f3)
+    executeFunctions()
+  }
+
+  function executeFunctions(){
+    var elm=document.getElementById("maperror")
+    elm.style.display="none"
+    elm=document.getElementById("reduceerror")
+    elm.style.display="none"
+    elm=document.getElementById("viewerror")
+    elm.style.display="none"
+    var mapData=""
+    var combineData=""
+    var reduceData=""
+    var f1=document.getElementById("f1").value
+    var f2=document.getElementById("f2").value
+    var f3=document.getElementById("f3").value
+    localStorage.setItem("f1",f1)
+    localStorage.setItem("f2",f2)
+    localStorage.setItem("f3",f3)
+
+    var tmp={}
+    with(tmp){
+        var acc1=null
+        var acc2={}
+        eval(f1);
+        eval(f2);
+        eval(f3);
+        for(var i=0;i<inputData.length;i++){
+          try{
+            var obj=map(inputData[i])
+            if(obj!=null){
+              mapData+=JSON.stringify(obj)
+              try{
+                acc1=reduce(obj,acc1)
+              }catch(reduce_e){
+                var elm=document.getElementById("reduceerror")
+                elm.innerHTML=reduce_e.message
+                elm.style.display="inline-block"
+                acc1=null
+              }
+            }
+          }catch(map_e){
+            var elm=document.getElementById("maperror")
+            elm.innerHTML=map_e.message
+            elm.style.display="inline-block"
+            mapData="[]"
+            reduceData="{}"
+            acc1={}
+            acc2={}
+          }
+        }
+        try{
+          outputData=view(acc1)
+        }catch(view_e){
+          var elm=document.getElementById("viewerror")
+          elm.innerHTML=view_e.message
+          elm.style.display="inline-block"
+          outputData=""
+        }
+    }
+    try{
+      var elm=document.getElementById("output")
+      elm.innerHTML=JSON.stringify(outputData)
+      elm=document.getElementById("inputData")
+      elm.innerHTML=JSON.stringify(inputData)
+      elm=document.getElementById("mappedData")
+      elm.innerHTML=mapData
+      elm=document.getElementById("reducedData")
+      elm.innerHTML=JSON.stringify(acc1)
+    }catch(e){}
+  }
+  try{
+    if(localStorage.getItem("f1")==null){
+      resetFunctions()
+    }
+  }catch(e){}
+  var elm=document.getElementById("f1")
+  elm.value=localStorage.getItem("f1")
+  elm=document.getElementById("f2")
+  elm.value=localStorage.getItem("f2")
+  elm=document.getElementById("f3")
+  elm.value=localStorage.getItem("f3")
+  try{
+    executeFunctions()
+  }catch(e){}
+</script>
+</body>
+</html>
