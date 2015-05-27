@@ -90,23 +90,10 @@ function submitSolutions() {
         return;
     }
 
-    var formUrl = "https://docs.google.com/a/doubledutch.me/forms/d/1QUsxrkBb82rJRGD6v-CDrLEaP9EnzXnM58gb7YG0uf0/formResponse";
-    var data = new Object();
-    data["entry.818199043"] = submission.name;
-    data["entry.1050172056"] = submission.email;
-    data["entry.1840321495"] = submission.time;
-    data["entry.2144662667"] = submission.challenge1Sol;
-    data["entry.1512466705"] = submission.challenge2Sol;
-    $.ajax({
-        type: "POST",
-        url: formUrl,
-        data: data,
-        statusCode: {
-            200: function() {
-                hasSubmitted = true;
-                alert("Your submission has been successfully submitted. Thanks for playing! :)")
-            }
-        },
-        dataType: "xml"
+    Parse.initialize("Y6JK2hsv4W5Vvhgy8buUwlxmBB0ITnyZslt2Tjls", "vudxasfdywLDbFve6urYKpVHLAptAcrx2wJBlBkt");
+    var Submission = Parse.Object.extend("Submission");
+    var parseSubmission = new Submission();
+    parseSubmission.save(submission).then(function(object) {
+        alert("Your submission has been successfully submitted. Thanks for playing! :)")
     });
 }
