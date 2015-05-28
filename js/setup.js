@@ -37,10 +37,13 @@ $(function() {
     $("#card-challenge-2").click(function() {
     	showPage("#page-challenge-2");
     });
-    $("#dd-title").click(function() {
+    $("#title-container").click(function() {
         if (submission.name && submission.email) {
             showPage("#page-selection");
         }
+    });
+    $("#back-arrow").click(function() {
+        showPage("#page-selection");
     });
 
     $('#preview-modal').on('shown.bs.modal', function () {
@@ -81,7 +84,12 @@ function finishChallenge() {
 
 function showPage(page) {
 	$(".page").hide();
-	$(page).show();
+	$(page).fadeIn();
+    if (page === "#page-challenge-1" || page === "#page-challenge-2") {
+        $("#back-arrow").fadeIn();
+    } else {
+        $("#back-arrow").hide();
+    }
 }
 
 function submitSolutions() {

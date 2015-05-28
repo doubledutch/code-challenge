@@ -2,6 +2,7 @@
 <html lang="en" xml:lang="en">
     <head>
         <title>DoubleDutch Code Challenge</title>
+        <link rel="shortcut icon" href="img/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -13,7 +14,11 @@
         <script src="js/setup.js" ></script>
     </head>
     <body>
-        <div id="dd-title" class="center-text">DoubleDutch Code Challenge</div>
+        <div id="back-arrow"></div>
+        <div id="title-container">
+            <div id="dd-title" class="center-text"></div>
+            <div id="dd-subtitle" class="center-text fancy"><span>code challenge</span></div>
+        </div>
         <div id="page-main" class="page">
             <form data-toggle="validator" role="form" id="input-container">
                 <div class="form-group">
@@ -37,16 +42,18 @@
         </div>
         <div id="page-selection" class="page">
             <div class="card-list">
+                <div id="intro-text">Welcome to the DoubleDutch code challenge!</br> Each correct answer gives you a ticket into our raffle!</div>
                 <div id="submission-buttons-container">
-                    <button class="btn btn-default btn-lg" id="preview-button" data-toggle="modal" type="button" data-target="#preview-modal">Preview Submission</button>
-                    <button class="btn btn-success btn-lg" id="submit-button" type="button">Submit Solutions</button>
+                    <button class="btn btn-default btn-lg sub-buttons" id="preview-button" data-toggle="modal" type="button" data-target="#preview-modal">Preview Submission</button>
+                    <button class="btn btn-success btn-lg sub-buttons" id="submit-button" type="button">Submit Solutions</button>
                 </div>
                 <div class="card" id="card-challenge-1">
                     <img class="card-img" src="img/can-you-dd.jpg">
                     <div class="card-text">
                         <div class="card-title-container">
-                            <div class="card-title">Can you DoubleDutch?</div><span class="label label-danger">javascript</span>
+                            <div class="card-title">Can you DoubleDutch?</div> <span class="label label-danger">javascript</span>
                         </div>
+                        <div class="card-subtitle">by Adam Liechty</div>
                         <div class="card-description">It's tough out there in the school yard. The snobby jump rope club has put a dizzying path between you and those free ice cream sandwiches. Time to show off your moves.</div>
                     </div>
                 </div>
@@ -56,22 +63,23 @@
                         <div class="card-title-container">
                             <div class="card-title">Map Reduce Challenge</div> <span class="label label-danger">javascript</span> 
                         </div>
-                        <div class="card-description">We give you a mess of letters and a framework for running simple map/reduce operations on those letters. Hidden in lexical cacophony are some email addresses. Can you find them?</div>
+                        <div class="card-subtitle">by Kasper Jeppesen</div>
+                        <div class="card-description">We give you a mess of letters and a framework for running simple map/reduce operations on those letters. Hidden in this lexical cacophony are some email addresses. Can you find them?</div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="page-challenge-1" class="page">
-            <label for="challenge-1-sol-text" class="solution-label">Your JS code (copy/paste from below)</label>
+            <i class="arrow" title="arrow icon"></i>
+            <label for="challenge-1-sol-text" class="solution-label">Your JS code (copy/paste from below) - one raffle entry for working solution</label>
             <textarea class="form-control solution-area" rows="3" id="challenge-1-sol-text" placeholder="When you're ready, copy-paste your solution here"></textarea>
             <iframe src=http://canyoudoubledutch.herokuapp.com/ class="embedded-frame" id="embed-challenge-1"> </iframe>
         </div>
         <div id="page-challenge-2" class="page">
-            <label for="challenge-2-sol-text" class="solution-label">Your Solution (all the emails you found)</label>
+            <label for="challenge-2-sol-text" class="solution-label">Email addreses that you found - one raffle entry for each email</label>
             <textarea class="form-control solution-area" rows="3" id="challenge-2-sol-text" placeholder="Put email addresses here as you find them"></textarea>
            <iframe class="embedded-frame" src=src/map-reduce.html id="embed-challenge-2"> </iframe>        
         </div>
-
         <!-- modals -->
         <div class="modal fade " id="preview-modal" role="dialog">
           <div class="modal-dialog">

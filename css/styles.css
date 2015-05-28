@@ -1,44 +1,41 @@
-@font-face{
-    font-family: Roboto-Light;
-    src: url('../fonts/Roboto-Light.ttf');
-}
-
-@font-face{
-    font-family: Roboto-Thin;
-    src: url('../fonts/Roboto-Thin.ttf');
-}
-
-@font-face{
-    font-family: Roboto-Regular;
-    src: url('../fonts/Roboto-Regular.ttf');
-}
-
-@font-face{
-    font-family: Roboto-Medium;
-    src: url('../fonts/Roboto-Medium.ttf');
-}
-
-@font-face{
-    font-family: RobotoCondensed-Regular;
-    src: url('../fonts/RobotoCondensed-Regular.ttf');
-}
-
 html, body
 {
-    background-color: #000; 
+    background-color: #323637; 
     height: 100%;
+}
+
+span
+{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+#title-container
+{
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
 }
 
 #dd-title 
 {
-    margin-top: 32px;
-    margin-bottom: 16px;
-    font-size: 300%;
+    height: 42px;
+    padding: 15px 100px;
+    background: url('../img/doubledutch-logo.svg') no-repeat;
+    background-position: 50% 50%;
+    margin-bottom: 8px;
+    background-size: contain;
+    transition: all .2s ease-in-out;
+}
+
+#dd-subtitle 
+{
+    margin-top: 24px;
+    font-size: 150%;
     font-style: bold;
-    color: white;
-    font-family: Roboto-Thin, Georgia, Palatino, Times New Roman, serif;
-    text-rendering: optimizeLegibility;
-    cursor: pointer;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    opacity: .7;
 }
 
 .embedded-frame
@@ -52,6 +49,19 @@ html, body
     box-shadow: 0px 0px 15px #DDDDDD;
     padding-bottom: 16px;
     margin-bottom: 16px;
+    transition: all .2s ease-in-out;
+}
+
+#intro-text
+{
+    text-align: center;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.sub-buttons
+{
+    width: 48%;
 }
 
 .center-text 
@@ -61,6 +71,7 @@ html, body
 
 .page 
 {
+    margin-top: 24px;
     height: 100%;
     text-align: center;
 }
@@ -99,7 +110,7 @@ html, body
 .card-text
 {
     text-align: left;
-    margin: 16px;
+    margin: 8px;
 }
 
 .card-title-container
@@ -112,7 +123,17 @@ html, body
     display: inline;
     font-size: 150%;
     margin-right: 8px;
-    font-family: Roboto-Medium, Georgia, Palatino, Times New Roman, serif;
+    font-style: bold;
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.card-subtitle
+{
+    display: inline;
+    font-size: 16px;
+    font-style: bold;
+    opacity: .8;
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .card-description
@@ -120,15 +141,17 @@ html, body
     color: #333;
     font-size: 14px;
     margin-top: 8px;
-    font-family: Roboto-Regular, Georgia, Palatino, Times New Roman, serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 #input-container
 {
+    margin-top: 50px;
     width: 80%;
     max-width: 400px;
     margin-left:auto;
     margin-right:auto;
+    position: relative;
 }
 
 .input-group
@@ -154,6 +177,45 @@ html, body
 #submission-buttons-container
 {
     margin-bottom: 32px;
+}
+
+
+.fancy {
+    line-height: 0;
+    text-align: center;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-top: 1px solid white;
+    top: 0;
+    width: 50px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 8px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 8px;
+}
+
+#back-arrow {
+    width: 3.0em;
+    height: 3.0em;
+    border-right: 0.75em solid black;
+    border-top: 0.75em solid black;
+    transform: rotate(-135deg);
+    border-color: white;
+    float: left;
+    margin-left: 32px;
+    cursor: pointer;
 }
 
 
